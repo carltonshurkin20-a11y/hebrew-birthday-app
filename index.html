@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hebrew Birthday Converter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="card">
+  <h1>Hebrew Birthday</h1>
+  <p class="lede">Enter a birthday and see the date it falls on in the Hebrew calendar.</p>
+
+  <form id="convert-form" novalidate>
+    <label for="birthdate">Birthday</label>
+    <input type="date" id="birthdate" name="birthdate" required>
+    <p class="error" id="error" role="alert"></p>
+    <button type="submit">Convert</button>
+  </form>
+
+  <section class="result" id="result" aria-live="polite">
+    <p class="result-hebrew" id="result-hebrew"></p>
+    <div class="result-rule"></div>
+    <p class="result-gematriya" id="result-gematriya"></p>
+    <p class="result-greg" id="result-greg"></p>
+    <p class="result-next" id="result-next"></p>
+  </section>
+
+  <p class="footnote">Hebrew dates begin at sundown the evening before, so the date shown already reflects that.</p>
+</main>
+
+<script src="hebrew-calendar.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
