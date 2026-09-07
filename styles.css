@@ -91,12 +91,11 @@ label {
 }
 
 input[type="date"] {
-  /* iOS Safari draws its own control chrome (border/background) around
-     form fields by default, which fights with the custom styling below.
-     -webkit-appearance:none / appearance:none hands full control back to
-     this stylesheet. */
-  -webkit-appearance: none;
-  appearance: none;
+  /* NOTE: deliberately no -webkit-appearance:none here. On iOS/macOS
+     Safari that rule silently deletes the built-in "mm/dd/yyyy"
+     placeholder segments inside a date input, leaving it blank - so for
+     this one control we keep Safari's native internal layout and only
+     restyle the outer box (background/border/padding/font). */
   font-family: 'Assistant', sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
@@ -107,6 +106,8 @@ input[type="date"] {
   padding: 0.75rem 0.9rem;
   width: 100%;
   min-height: 3rem;
+  line-height: 1.5rem;
+  box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
