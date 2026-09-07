@@ -91,12 +91,16 @@ label {
 }
 
 input[type="date"] {
-  /* NOTE: deliberately no -webkit-appearance:none here. On iOS/macOS
-     Safari that rule silently deletes the built-in "mm/dd/yyyy"
-     placeholder segments inside a date input, leaving it blank - so for
-     this one control we keep Safari's native internal layout and only
-     restyle the outer box (background/border/padding/font). */
-  font-family: 'Assistant', sans-serif;
+  /* NOTE: deliberately no -webkit-appearance:none here (Safari deletes
+     the built-in "mm/dd/yyyy" placeholder segments if that's set), and
+     deliberately NOT the page's web font either: Safari's date input
+     renders its internal segmented value/placeholder using its own text
+     layout, and assigning it a custom @font-face font (rather than a
+     system font) makes that internal text fail to render at all - the
+     field looks completely blank even though it has a real value. Only
+     the outer box (background/border/padding) is restyled here; the text
+     inside uses the OS's own UI font. */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
   color: var(--ink);
