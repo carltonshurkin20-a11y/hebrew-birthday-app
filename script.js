@@ -7,11 +7,22 @@ const hebrewEl = document.getElementById('result-hebrew');
 const gematriyaEl = document.getElementById('result-gematriya');
 const gregEl = document.getElementById('result-greg');
 const nextEl = document.getElementById('result-next');
+const datePlaceholder = document.getElementById('date-placeholder');
 
 // Formats a JS Date as e.g. "March 19, 2003" for display.
 const gregFormatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric', month: 'long', day: 'numeric'
 });
+
+// Our own "mm/dd/yyyy" hint (see styles.css .date-placeholder) only makes
+// sense while the field is empty - hide it the instant a real date is
+// picked, and bring it back if the field is ever cleared.
+function updateDatePlaceholder() {
+  datePlaceholder.hidden = input.value !== '';
+}
+updateDatePlaceholder();
+input.addEventListener('input', updateDatePlaceholder);
+input.addEventListener('change', updateDatePlaceholder);
 
 // Shorthand for the month-number constants exported by hebrew-calendar.js.
 const M = HebrewCalendar.months;

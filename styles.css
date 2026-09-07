@@ -90,6 +90,49 @@ label {
   color: var(--ink);
 }
 
+/* Real mobile Safari doesn't draw a "mm/dd/yyyy" hint in an empty date
+   field at all (unlike desktop browsers), and that turned out to be true
+   completely independent of any CSS applied to the input. Rather than
+   depend on the browser's own placeholder rendering, .date-placeholder
+   below draws our own hint text on top of the field and is hidden by
+   script.js the moment a real date is picked. */
+.date-field {
+  position: relative;
+}
+
+.date-placeholder {
+  /* Chromium DOES draw its own native "mm/dd/yyyy" placeholder, which
+     would otherwise show through underneath ours and look garbled/
+     doubled. Rather than just floating our text over the input, this
+     covers the input's whole text area with an opaque, same-color
+     rectangle - fully masking whatever (or nothing) the browser draws
+     underneath - stopping short of the right edge so the native calendar
+     icon stays visible and clickable. */
+  position: absolute;
+  left: 1.5px;
+  top: 1.5px;
+  bottom: 1.5px;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.9rem;
+  background: #fffdf7;
+  border-radius: 10px 0 0 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  pointer-events: none; /* let taps/clicks pass through to the real input underneath */
+}
+
+/* Setting display:flex above on .date-placeholder otherwise overrides the
+   browser's default [hidden]{display:none} rule (an author style always
+   wins over that user-agent default), which would make the `hidden`
+   attribute script.js sets stop actually hiding this element. */
+.date-placeholder[hidden] {
+  display: none;
+}
+
 input[type="date"] {
   /* NOTE: deliberately no -webkit-appearance:none here (Safari deletes
      the built-in "mm/dd/yyyy" placeholder segments if that's set), and

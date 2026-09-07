@@ -17,7 +17,10 @@
 
   <form id="convert-form" novalidate>
     <label for="birthdate">Birthday</label>
-    <input type="date" id="birthdate" name="birthdate" required>
+    <div class="date-field">
+      <input type="date" id="birthdate" name="birthdate" required>
+      <span class="date-placeholder" id="date-placeholder" aria-hidden="true">mm/dd/yyyy</span>
+    </div>
     <p class="error" id="error" role="alert"></p>
     <button type="submit">Convert</button>
   </form>
