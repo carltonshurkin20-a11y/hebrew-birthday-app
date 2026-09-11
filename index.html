@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hebrew Birthday Converter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +17,7 @@
 
   <form id="convert-form" novalidate>
     <label for="birthdate">Birthday</label>
-    <div class="date-field">
-      <input type="date" id="birthdate" name="birthdate" required>
-      <span class="date-placeholder" id="date-placeholder" aria-hidden="true">mm/dd/yyyy</span>
-    </div>
+    <input type="date" id="birthdate" name="birthdate" required>
     <p class="error" id="error" role="alert"></p>
     <button type="submit">Convert</button>
   </form>

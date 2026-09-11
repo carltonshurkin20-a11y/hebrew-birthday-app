@@ -1,338 +1,237 @@
-:root {
-  --sky-top: #233256;
-  --sky-mid: #182543;
-  --sky-bottom: #0a1120;
-  --horizon-glow: #c98a3f;
-  --parchment: #f6efdd;
-  --parchment-edge: #ece2c8;
-  --ink: #2b2318;
-  --ink-muted: #7a6c52;
-  --gold: #bf9a4f;
-  --gold-deep: #9c7c37;
-  --rust: #a65a3d;
-  --focus: #8fa6c9;
+:root{
+  --sky-top:#233256;
+  --sky-mid:#182543;
+  --sky-bottom:#0a1120;
+  --horizon-glow:#c98a3f;
+  --parchment:#f6efdd;
+  --parchment-edge:#ece2c8;
+  --ink:#2b2318;
+  --ink-muted:#7a6c52;
+  --gold:#bf9a4f;
+  --gold-deep:#9c7c37;
+  --rust:#a65a3d;
+  --focus:#8fa6c9;
 }
 
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  min-height:100%;
 }
 
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-}
-
-body {
-  font-family: 'Assistant', sans-serif;
-  /* 100vh on mobile Safari is measured with the address bar hidden, so it
-     can be taller than what's actually visible and cut content off.
-     100dvh ("dynamic viewport height") tracks the real visible area
-     instead; 100vh stays first as a fallback for older browsers. */
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* env(safe-area-inset-*) keeps the card clear of the notch / home
-     indicator on edge-to-edge phones; the plain 32px/20px are the
-     minimum padding on devices without safe-area insets. */
-  padding: max(32px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+body{
+  font-family:'Assistant', sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 20px;
   background:
-    radial-gradient(120% 60% at 50% 100%, rgba(201, 138, 63, 0.28), rgba(201, 138, 63, 0) 60%),
+    radial-gradient(120% 60% at 50% 100%, rgba(201,138,63,0.28), rgba(201,138,63,0) 60%),
     linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-bottom) 100%);
-  /* background-attachment:fixed repaints unreliably on mobile Safari, so
-     the gradient scrolls with the page instead (imperceptible here). */
-  color: var(--ink);
+  background-attachment:fixed;
+  color:var(--ink);
 }
 
-.card {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-  background: var(--parchment);
-  border: 1px solid var(--parchment-edge);
-  border-radius: 18px;
-  padding: 2.75rem 2.25rem 2.25rem;
+.card{
+  position:relative;
+  width:100%;
+  max-width:440px;
+  background:var(--parchment);
+  border:1px solid var(--parchment-edge);
+  border-radius:18px;
+  padding:2.75rem 2.25rem 2.25rem;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5) inset,
-    0 30px 60px -20px rgba(4, 8, 20, 0.55),
-    0 8px 24px -8px rgba(4, 8, 20, 0.35);
+    0 1px 0 rgba(255,255,255,0.5) inset,
+    0 30px 60px -20px rgba(4,8,20,0.55),
+    0 8px 24px -8px rgba(4,8,20,0.35);
 }
 
-h1 {
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 1.9rem;
-  line-height: 1.15;
-  margin: 0 0 0.6rem;
-  color: var(--ink);
-  letter-spacing: 0.2px;
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.9rem;
+  line-height:1.15;
+  margin:0 0 0.6rem;
+  color:var(--ink);
+  letter-spacing:0.2px;
 }
 
-.lede {
-  margin: 0 0 1.9rem;
-  font-size: 0.98rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-  max-width: 34ch;
+.lede{
+  margin:0 0 1.9rem;
+  font-size:0.98rem;
+  line-height:1.5;
+  color:var(--ink-muted);
+  max-width:34ch;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+form{
+  display:flex;
+  flex-direction:column;
+  gap:0.85rem;
 }
 
-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink);
+label{
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--ink);
 }
 
-/* Real mobile Safari doesn't draw a "mm/dd/yyyy" hint in an empty date
-   field at all (unlike desktop browsers), and that turned out to be true
-   completely independent of any CSS applied to the input. Rather than
-   depend on the browser's own placeholder rendering, .date-placeholder
-   below draws our own hint text on top of the field and is hidden by
-   script.js the moment a real date is picked. */
-.date-field {
-  position: relative;
+input[type="date"]{
+  font-family:'Assistant', sans-serif;
+  font-size:1.05rem;
+  font-weight:500;
+  color:var(--ink);
+  background:#fffdf7;
+  border:1.5px solid var(--parchment-edge);
+  border-radius:10px;
+  padding:0.75rem 0.9rem;
+  width:100%;
+  transition:border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.date-placeholder {
-  /* Chromium DOES draw its own native "mm/dd/yyyy" placeholder, which
-     would otherwise show through underneath ours and look garbled/
-     doubled. Rather than just floating our text over the input, this
-     covers the input's whole text area with an opaque, same-color
-     rectangle - fully masking whatever (or nothing) the browser draws
-     underneath - stopping short of the right edge so the native calendar
-     icon stays visible and clickable. */
-  position: absolute;
-  left: 1.5px;
-  top: 1.5px;
-  bottom: 1.5px;
-  right: 2.5rem;
-  display: flex;
-  align-items: center;
-  padding-left: 0.9rem;
-  background: #fffdf7;
-  border-radius: 10px 0 0 10px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--ink-muted);
-  pointer-events: none; /* let taps/clicks pass through to the real input underneath */
+input[type="date"]:focus{
+  outline:none;
+  border-color:var(--focus);
+  box-shadow:0 0 0 4px rgba(143,166,201,0.25);
 }
 
-/* Setting display:flex above on .date-placeholder otherwise overrides the
-   browser's default [hidden]{display:none} rule (an author style always
-   wins over that user-agent default), which would make the `hidden`
-   attribute script.js sets stop actually hiding this element. */
-.date-placeholder[hidden] {
-  display: none;
+button{
+  margin-top:0.3rem;
+  font-family:'Assistant', sans-serif;
+  font-size:1.02rem;
+  font-weight:700;
+  color:#241c0f;
+  background:linear-gradient(180deg, #d4b06a, var(--gold) 55%, var(--gold-deep));
+  border:none;
+  border-radius:10px;
+  padding:0.85rem 1rem;
+  cursor:pointer;
+  box-shadow:0 10px 20px -8px rgba(156,124,55,0.55);
+  transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
-input[type="date"] {
-  /* NOTE: deliberately no -webkit-appearance:none here (Safari deletes
-     the built-in "mm/dd/yyyy" placeholder segments if that's set), and
-     deliberately NOT the page's web font either: Safari's date input
-     renders its internal segmented value/placeholder using its own text
-     layout, and assigning it a custom @font-face font (rather than a
-     system font) makes that internal text fail to render at all - the
-     field looks completely blank even though it has a real value. Only
-     the outer box (background/border/padding) is restyled here; the text
-     inside uses the OS's own UI font. */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: #fffdf7;
-  border: 1.5px solid var(--parchment-edge);
-  border-radius: 10px;
-  padding: 0.75rem 0.9rem;
-  width: 100%;
-  min-height: 3rem;
-  line-height: 1.5rem;
-  box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 14px 26px -8px rgba(156,124,55,0.65);
+  filter:brightness(1.04);
 }
 
-input[type="date"]:focus {
-  outline: none;
-  border-color: var(--focus);
-  box-shadow: 0 0 0 4px rgba(143, 166, 201, 0.25);
+button:active{
+  transform:translateY(0);
+  box-shadow:0 6px 14px -8px rgba(156,124,55,0.55);
 }
 
-button {
-  /* Same reset as the date input above - iOS Safari otherwise overlays
-     its own default button chrome on top of this gradient/shadow. */
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: 0.3rem;
-  font-family: 'Assistant', sans-serif;
-  font-size: 1.02rem;
-  font-weight: 700;
-  color: #241c0f;
-  background: linear-gradient(180deg, #d4b06a, var(--gold) 55%, var(--gold-deep));
-  border: none;
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
-  cursor: pointer;
-  box-shadow: 0 10px 20px -8px rgba(156, 124, 55, 0.55);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+button:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
 }
 
-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 26px -8px rgba(156, 124, 55, 0.65);
-  filter: brightness(1.04);
+.error{
+  font-size:0.88rem;
+  color:var(--rust);
+  min-height:1.2em;
+  margin:0.2rem 0 0;
 }
 
-button:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 14px -8px rgba(156, 124, 55, 0.55);
+.result{
+  margin-top:1.6rem;
+  padding-top:1.4rem;
+  border-top:1px solid var(--parchment-edge);
+  text-align:center;
+  transform:scaleY(0.85);
+  transform-origin:top;
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transition:opacity 0.45s ease, transform 0.45s cubic-bezier(.2,.7,.3,1), max-height 0.45s ease;
 }
 
-button:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+.result.show{
+  opacity:1;
+  transform:scaleY(1);
+  max-height:320px;
 }
 
-.error {
-  font-size: 0.88rem;
-  color: var(--rust);
-  min-height: 1.2em;
-  margin: 0.2rem 0 0;
+.result-hebrew{
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:500;
+  font-size:1.55rem;
+  color:var(--gold-deep);
+  margin:0 0 0.35rem;
 }
 
-.result {
-  margin-top: 1.6rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid var(--parchment-edge);
-  text-align: center;
-  transform: scaleY(0.85);
-  transform-origin: top;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.2, .7, .3, 1), max-height 0.45s ease;
+.result-rule{
+  width:0;
+  height:2px;
+  background:var(--gold);
+  margin:0 auto 0.6rem;
+  transition:width 0.5s ease 0.15s;
 }
 
-.result.show {
-  opacity: 1;
-  transform: scaleY(1);
-  max-height: 320px;
+.result.show .result-rule{
+  width:64px;
 }
 
-.result-hebrew {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.55rem;
-  color: var(--gold-deep);
-  margin: 0 0 0.35rem;
+.result-gematriya{
+  font-size:1.05rem;
+  color:var(--ink);
+  margin:0 0 0.4rem;
+  direction:rtl;
+  opacity:0;
+  transition:opacity 0.4s ease 0.2s;
 }
 
-.result-rule {
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  margin: 0 auto 0.6rem;
-  transition: width 0.5s ease 0.15s;
+.result.show .result-gematriya{
+  opacity:1;
 }
 
-.result.show .result-rule {
-  width: 64px;
+.result-greg{
+  font-size:0.85rem;
+  color:var(--ink-muted);
+  margin:0 0 0.9rem;
 }
 
-.result-gematriya {
-  font-size: 1.05rem;
-  color: var(--ink);
-  margin: 0 0 0.4rem;
-  direction: rtl;
-  opacity: 0;
-  transition: opacity 0.4s ease 0.2s;
+.result-next{
+  font-size:0.9rem;
+  color:var(--ink);
+  margin:0;
+  padding-top:0.8rem;
+  border-top:1px dashed var(--parchment-edge);
+  opacity:0;
+  transition:opacity 0.4s ease 0.25s;
 }
 
-.result.show .result-gematriya {
-  opacity: 1;
+.result.show .result-next{
+  opacity:1;
 }
 
-.result-greg {
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-  margin: 0 0 0.9rem;
+.result-next strong{
+  color:var(--gold-deep);
+  font-weight:700;
 }
 
-.result-next {
-  font-size: 0.9rem;
-  color: var(--ink);
-  margin: 0;
-  padding-top: 0.8rem;
-  border-top: 1px dashed var(--parchment-edge);
-  opacity: 0;
-  transition: opacity 0.4s ease 0.25s;
+.footnote{
+  margin:1.7rem 0 0;
+  font-size:0.78rem;
+  line-height:1.5;
+  color:var(--ink-muted);
+  text-align:center;
 }
 
-.result.show .result-next {
-  opacity: 1;
-}
-
-.result-next strong {
-  color: var(--gold-deep);
-  font-weight: 700;
-}
-
-.footnote {
-  margin: 1.7rem 0 0;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--ink-muted);
-  text-align: center;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .result,
-  .result-rule,
-  .result-gematriya,
-  .result-next,
-  button,
-  input {
-    transition: none !important;
+@media (prefers-reduced-motion: reduce){
+  .result, .result-rule, .result-gematriya, .result-next, button, input{
+    transition:none !important;
   }
 }
 
-@media (max-width:400px) {
-  .card {
-    padding: 2.1rem 1.5rem 1.9rem;
+@media (max-width:400px){
+  .card{
+    padding:2.1rem 1.5rem 1.9rem;
   }
-
-  h1 {
-    font-size: 1.65rem;
-  }
-}
-
-/* On short viewports (smaller iPhones, or any phone in landscape) the card
-   plus a revealed result can be taller than the screen. Tighten the
-   vertical rhythm so everything comfortably fits without scrolling. */
-@media (max-height:700px) {
-  body {
-    padding-top: max(16px, env(safe-area-inset-top));
-    padding-bottom: max(16px, env(safe-area-inset-bottom));
-    align-items: flex-start;
-  }
-
-  .card {
-    padding: 1.75rem 1.75rem 1.5rem;
-  }
-
-  .lede {
-    margin-bottom: 1.1rem;
-  }
-
-  .footnote {
-    margin-top: 1.1rem;
+  h1{
+    font-size:1.65rem;
   }
 }
