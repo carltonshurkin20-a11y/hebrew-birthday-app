@@ -91,6 +91,10 @@ input[type="date"]{
   transition:border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+input[type="date"]::-webkit-date-and-time-value{
+  text-align:left;
+}
+
 input[type="date"]:focus{
   outline:none;
   border-color:var(--focus);
@@ -103,12 +107,12 @@ button{
   font-size:1.02rem;
   font-weight:700;
   color:#241c0f;
-  background:linear-gradient(180deg, #07e529, var(--gold) 55%, var(--gold-deep));
+  background:linear-gradient(180deg, #e1e507f3, var(--gold) 55%, var(--gold-deep));
   border:none;
   border-radius:10px;
   padding:0.85rem 1rem;
   cursor:pointer;
-  box-shadow:0 10px 20px -8px rgba(252, 5, 141, 0.55);
+  box-shadow:0 10px 20px -8px rgba(5, 46, 252, 0.55);
   transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
